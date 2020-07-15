@@ -1,0 +1,140 @@
+﻿@using Microsoft.AspNetCore.Http
+@using Microsoft.AspNetCore.Identity
+@using SellingSolutions.Areas.Identity.Data
+@inject IHttpContextAccessor session
+@inject SignInManager<SellingSolutionsUser> SignInManager
+@inject UserManager<SellingSolutionsUser> UserManager
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#222" />
+    <title>@ViewData["Title"] - SellingSolutions</title>
+
+    <environment include="Development">
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+        <link rel="stylesheet" href="~/css/site.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="icon" href="~/favicon.ico" />
+    </environment>
+    <environment exclude="Development">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+              asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
+              asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
+        <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
+    </environment>
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">SellingSolutions</a>
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li>
+                            <a asp-controller="Home" asp-action="Index">
+                                <i class="fa fa-home"></i>Home
+                            </a>
+                        </li>
+                        <li>
+                            <a asp-controller="Home" asp-action="About">
+                                <i class="fa fa-question"></i>About
+                            </a>
+                        </li>
+                        <li>
+                            <a asp-controller="Home" asp-action="Contact">
+                                <i class="fa fa-phone"></i>Contact
+                            </a>
+                        </li>
+                        <li>
+                            <a asp-controller="Products" asp-action="MyPosts" id="my-posts">
+                                <i class="fa fa-book"></i>My Posts
+                            </a>
+                        </li>
+                        <li>
+                            <a asp-controller="Products" asp-action="Index">
+                                <i class="fa fa-shopping-basket"></i>Products
+                            </a>
+                        </li>
+                        <li>
+                            <a asp-controller="Sales" asp-action="Index">
+                                <i class="fa fa-bar-chart"></i>Sales
+                            </a>
+                        </li>
+                        <li id="shopping-cart">
+                            @if (session.HttpContext.Session.GetString("cartID") == null)
+                            {
+                                <span>0</span>
+                            }
+                            else
+                            {
+                                <span>@session.HttpContext.Session.GetInt32("cartCount")</span>
+                            }
+                            <a asp-controller="Carts" asp-action="Index">
+                                <i class="fa fa-shopping-cart"></i>
+                            </a>
+                        </li>
+                    </ul>
+                    <partial name="Partials/_LoginPartial" />
+                </div>
+            </div>
+        </nav>
+        @if (SignInManager.IsSignedIn(User))
+        {
+            <div class="user-profile">
+                <h3>
+                    <i>
+                        You are logged in as:
+                        <a asp-area="Identity" asp-page="/Account/Manage/Index" title="My Account">@User.Identity.Name</a>
+                    </i>
+                </h3>
+            </div>
+        }
+    </header>
+
+    <partial name="Partials/_CookieConsentPartial" />
+
+    <main>
+        <div class="container body-content">
+            @RenderBody()
+            <hr />
+            <footer>
+                <p>&copy; 2019 - SellingSolutions</p>
+            </footer>
+        </div>
+    </main>
+
+    <environment include="Development">
+        <script src="~/lib/jquery/dist/jquery.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+        <script src="~/js/site.js" asp-append-version="true"></script>
+        <script src="https://kryogenix.org/code/browser/sorttable/sorttable.js"></script>
+    </environment>
+    <environment exclude="Development">
+        <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-3.3.1.min.js"
+                asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
+                asp-fallback-test="window.jQuery"
+                crossorigin="anonymous"
+                integrity="sha384-tsQFqpEReu7ZLhBV2VZlAu7zcOV+rXbYlF2cqB8txI/8aZajjp4Bqd+V6D5IgvKT">
+        </script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"
+                asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.min.js"
+                asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal"
+                crossorigin="anonymous"
+                integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd">
+        </script>
+        <script src="~/js/site.min.js" asp-append-version="true"></script>
+    </environment>
+
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

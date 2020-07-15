@@ -1,0 +1,36 @@
+﻿@model IEnumerable<SellingSolutions.Models.Product>
+@using Microsoft.AspNetCore.Identity
+@using SellingSolutions.Areas.Identity.Data
+@inject SignInManager<SellingSolutionsUser> SignInManager
+@inject UserManager<SellingSolutionsUser> UserManager
+
+@{
+    ViewData["Title"] = "My Posts";
+}
+
+@if (SignInManager.IsSignedIn(User))
+{
+    <div class="my-posts">
+        <h1>My Posts</h1>
+        @foreach (var product in Model)
+        {
+            <div class="item-box">
+                <a asp-action="Edit" asp-route-id="@product.ID" title="@Html.DisplayFor(productItem => product.Name)">
+                    <div class="section-1">
+                        <img alt="@Html.DisplayFor(productItem => product.Name)" src="@Html.DisplayFor(productItem => product.Image)" />
+                    </div>
+                    <div class="section-2">
+                        <h2>@Html.DisplayFor(productItem => product.Name)</h2>
+                    </div>
+                    <div class="section-3">
+                        <p>@Html.DisplayFor(productItem => product.Price)</p>
+                        <desc>@Html.DisplayFor(productItem => product.Category)</desc>
+                        <p>@Html.DisplayFor(productItem => product.Quantity)</p>
+                    </div>
+                </a>
+                <h5>@Html.DisplayFor(productItem => product.Seller)</h5>
+            </div>
+        }
+    </div>
+    <a asp-action="Create" class="btn btn-default">New Post</a>
+}

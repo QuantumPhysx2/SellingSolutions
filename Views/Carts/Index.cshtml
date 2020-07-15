@@ -1,0 +1,75 @@
+﻿@model IEnumerable<SellingSolutions.Models.Cart>
+@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor session
+@{
+    ViewData["Title"] = "My Cart";
+}
+
+<h2>My Cart</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ItemID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Quantity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PriceGST)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    <a asp-controller="Products" asp-action="Details" asp-route-id="@item.ItemID">
+                        @Html.DisplayFor(modelItem => item.ItemID)
+                    </a>
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Quantity)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PriceGST)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.ID" id="item-option" title="Edit">
+                        <i class="fa fa-edit"></i>
+                    </a>
+                    <a asp-action="Details" asp-route-id="@item.ID" id="item-option" title="View Item">
+                        <i class="fa fa-tag"></i>
+                    </a>
+                    <a asp-action="Delete" asp-route-id="@item.ID" id="item-option" title="Delete">
+                        <i class="fa fa-remove"></i>
+                    </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+@if (session.HttpContext.Session.GetString("cartID") == null)
+{
+    <a asp-controller="Products" asp-action="Index">Return</a>
+}
+else
+{
+    <div class="total-price">
+        <h4>
+            Total:
+        </h4>
+        <p>$@Model.Sum(product => product.Price)</p>
+    </div>
+
+    <a asp-action="Purchase" class="btn btn-default">Purchase</a>
+}

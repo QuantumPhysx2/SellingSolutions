@@ -1,0 +1,206 @@
+﻿@import url(https://fonts.googleapis.com/css?family=Exo:400,500,500italic,400italic,600,600italic,700,700italic,800,800italic,300,300italic);
+@import url(https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css);
+
+* {
+    font-family: "Exo", sans-serif;
+}
+
+html,
+body,
+main {
+    height: 100%;
+    width: 100%;
+}
+
+body {
+    background: #222;
+}
+
+header {
+    height: 51px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+address,
+label,
+p, 
+desc,
+ul,
+.dl-horizontal {
+    color: #fff;
+}
+
+.dl-horizontal > dd > img {
+    margin: 15px 0px;
+    max-width: 125px;
+}
+
+a {
+    color: #39ceff;
+}
+
+a:hover {
+    color: #6ad1ff;
+}
+
+button,
+input[type="text"],
+input[type="submit"] {
+    color: #222;
+}
+
+i {
+    width: 25px;
+    text-align: center;
+}
+
+.navbar-brand > a{
+    color: #39ceff;
+}
+
+.main-container > .box > a > img {
+    max-width: 320px;
+}
+
+.user-profile {
+    display: inline-block;
+    position: fixed;
+    top: 65px;
+    right: 20px;
+    z-index: 1000;
+}
+
+#my-posts {
+    color: #ffae3d;
+}
+
+.purchase {
+    background: #6bff6a;
+    border: 1px solid #666;
+    font-size: 17px;
+}
+
+#shopping-cart {
+    position: relative;
+}
+
+#shopping-cart > span {
+    color: #fff;
+    position: absolute;
+    top: 5px;
+    left: 3px;
+}
+
+.main-container {
+    display: block;
+    margin: 20px 0px;
+    text-align: center;
+}
+
+.main-container > .box {
+    display: inline-block;
+    margin: auto;
+    text-align: left;
+    width: 320px;
+}
+
+#item-option:hover {
+    text-decoration: none;
+}
+
+.profile-form {
+    width: 100%;
+}
+
+.register-page {
+    width: 50%;
+}
+
+.profile-form,
+.register-form {
+    display: grid;
+    grid-column-gap: 15px;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.out-of-stock {
+    background: #ff3e3e;
+}
+
+.table {
+    color: #fff;
+}
+
+.table > thead > tr {
+    cursor: pointer;
+}
+
+.table > tbody > tr:nth-child(odd):hover {
+    background: #515151;
+}
+
+.table > tbody > tr:nth-child(even):hover {
+    background: #4b4b4b;
+}
+
+.table > tbody > tr > td > img {
+    max-width: 85px;
+}
+
+.total-price {
+    text-align: right;
+}
+
+.total-price > h4,
+.total-price > p {
+    display: inline-block;
+}
+
+.total-price > p {
+    color: #ff7474;
+}
+
+.my-posts {
+    text-align: center;
+}
+
+.item-box {
+    display: inline-block;
+    margin: 20px 5px;
+}
+
+.item-box > a > .section-1 {
+    text-align: center;
+}
+
+.item-box > a > .section-1 > img {
+    height: 180px;
+}
+
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.carousel-caption p {
+    font-size: 20px;
+    line-height: 1.4;
+}
+
+.carousel-inner .item img[src$=".svg"] {
+    width: 100%;
+}
+
+#qrCode {
+    margin: 15px;
+}
+
+@media screen and (max-width: 1024px) {
+    header > nav {
+        font-size: 11px;
+    }
+}

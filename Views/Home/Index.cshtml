@@ -1,0 +1,70 @@
+﻿@model IEnumerable<SellingSolutions.Models.Product>
+@using Microsoft.AspNetCore.Identity
+@using SellingSolutions.Areas.Identity.Data
+@inject SignInManager<SellingSolutionsUser> SignInManager
+@inject UserManager<SellingSolutionsUser> UserManager
+
+@{
+    ViewData["Title"] = "Home";
+}
+
+@if (SignInManager.IsSignedIn(User))
+{
+    <h1>
+        Welcome to Selling Solutions, 
+        <a asp-area="Identity" asp-page="/Account/Manage/Index" title="My Account">
+            <i>@User.Identity.Name</i>
+        </a>
+    </h1>
+}
+else
+{
+    <h1>Welcome to Selling Solutions</h1>
+}
+
+<desc>
+    <i>
+        "We can sell your dreams"
+    </i>
+</desc>
+
+<div class="main-container">
+    <div class="box">
+        <a asp-controller="Products" asp-action="Index" title="Products">
+            <img alt="Products" src="~/images/image-1.png" />
+            <h2 class="title">All Products</h2>
+            <desc>Checkout the latest products</desc>
+        </a>
+    </div>
+    <div class="box">
+        <a asp-controller="Sales" asp-action="Index" title="Sales">
+            <img alt="Sales" src="~/images/image-2.png" />
+            <h2 class="title">All Sales</h2>
+            <desc>Keep up to date with all recent sales</desc>
+        </a>
+    </div>
+
+    <div class="box">
+        <a asp-controller="Products" asp-action="MyPosts" title="My Posts">
+            <img alt="Products" src="~/images/image-3.png" />
+            <h2 class="title">My Posts</h2>
+            <desc>Check your posts</desc>
+        </a>
+    </div>
+
+    <!--
+    if (SignInManager.IsSignedIn(User))
+    {
+        <h1>My products:</h1>
+        <div class="my-items">
+            <div class="item">
+                foreach (var products in Model)
+                {
+                    <img alt="Html.DisplayFor(productItem => products.Name)" src="Html.DisplayFor(productItem => products.Image)" />
+                    <p>Html.DisplayFor(productItem => products.Name)</p>
+                }
+            </div>
+        </div>
+    }   
+    -->
+</div>

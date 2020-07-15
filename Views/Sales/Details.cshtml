@@ -1,0 +1,49 @@
+﻿@model SellingSolutions.Models.Sales
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Sales</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ItemID)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ItemID)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Quantity)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Quantity)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Cost)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Cost)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Buyer)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Buyer)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.PurchaseDate)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.PurchaseDate)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.ID">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

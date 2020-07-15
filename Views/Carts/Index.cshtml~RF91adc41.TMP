@@ -1,0 +1,73 @@
+﻿@model IEnumerable<SellingSolutions.Models.Cart>
+@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor session
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>My Cart</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.CartID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ItemID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Quantity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PriceGST)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PriceTotal)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CartID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ItemID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Quantity)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PriceGST)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PriceTotal)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.ID">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.ID">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+@if (session.HttpContext.Session.GetString("cartID") == null)
+{
+    <a asp-controller="Products" asp-action="Index">Return</a>
+}
+else
+{
+    <a asp-action="Purchase" class="btn btn-default">Purchase</a>
+}

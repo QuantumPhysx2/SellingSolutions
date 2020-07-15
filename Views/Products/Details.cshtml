@@ -1,0 +1,51 @@
+﻿@model SellingSolutions.Models.Product
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Product</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dd>
+            <img alt="@Html.DisplayFor(model => model.Name)" src="@Html.DisplayFor(model => model.Image)" />
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Category)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Category)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Quantity)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Quantity)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Price)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Price)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Seller)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Seller)
+        </dd>
+    </dl>
+</div>
+<div class="actions-form">
+    <a asp-action="Purchase" asp-route-id="@Model.ID" class="btn btn-default">Add to Cart</a>
+    <a asp-action="Index">Back to List</a>
+</div>
